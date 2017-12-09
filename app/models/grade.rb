@@ -1,6 +1,8 @@
 class Grade < ActiveRecord::Base
-	belongs_to :teacher
+	
 	has_many :subjects
 	has_many :students
+	has_many :teacher, :through => :TeacherGradeMapping
+	has_many :TeacherGradeMapping
 	
 end
