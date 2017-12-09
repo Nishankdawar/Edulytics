@@ -1,3 +1,4 @@
 class Tag < ActiveRecord::Base
-	belongs_to :question
+	has_many :questions, :through => :QuestionTagMappings
+	has_many :QuestionTagMappings
 end

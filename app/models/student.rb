@@ -4,4 +4,6 @@ class Student < ActiveRecord::Base
 	has_many :subjects
 	has_many :questions, :through => :status
 	has_many :status
+	has_many :tests, :through => :status
+	
 end
