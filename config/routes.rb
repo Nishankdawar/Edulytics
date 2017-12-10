@@ -20,6 +20,11 @@ Rails.application.routes.draw do
       post '/get_tag' => 'users_api#get_tag'
       post '/give_tests' => 'users_api#give_tests'
       post '/test_list' => 'users_api#test_list'
+      post '/get_quest' => 'users_api#get_quest'
+      post '/get_answers' => 'users_api#get_answers'
+      post '/get_answers_678' => 'users_api#get_answers_678'
+      #post '/test_list' => 'users_api#test_list'
+
     end
   end
 
