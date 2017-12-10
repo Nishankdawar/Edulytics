@@ -18,6 +18,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       post '/tag_list' => 'users_api#tag_list'
       post '/get_tag' => 'users_api#get_tag'
+      post '/give_tests' => 'users_api#give_tests'
     end
   end
 
