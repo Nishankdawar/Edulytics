@@ -19,6 +19,7 @@ Rails.application.routes.draw do
       post '/tag_list' => 'users_api#tag_list'
       post '/get_tag' => 'users_api#get_tag'
       post '/give_tests' => 'users_api#give_tests'
+      post '/test_list' => 'users_api#test_list'
     end
   end
 
