@@ -2,6 +2,8 @@ module Api
   module V1
     class UsersApiController < ::ApiController
 
+        $correct = [0,0,0,0,0]
+        $total = [0,5,5,5,5]
 
     	def tag_list
     		data = Tag.all
@@ -31,22 +33,69 @@ module Api
     	def get_answers
     		student_id = params["student_id"]
     		Array answers = params["answers"]
+            Integer counter = 0
+            tempArray = Array.new
 
-    		for i in 1..5
+            for i in 1..5
     			if answers[i] == correctanswers[i] then
     				counter = counter+1
-    			else
-    				
+
+                    tempArray += (QuestionTagMapping.where(question_id: i).all.uniq.pluck(:tag_id))
+
     			end
 
     		end
 
-			correct = Array.new(4)
-			total = Array.new(4)
+            # tempArray.each do |i|
 
+            # end
 
+            if counter == 4 || counter == 5
+                return response_data({results: [100,100,100,100]},"Result Done",200)
+            else
 
+                nextQuest = (tempArray[1] + 5 - 1).to_i
+                quest = Question.where(id: nextQuest).all.first
+                return response_data({question: quest.content},"New Question created",200)
+            end
     	end
+
+        def get_answers_6
+            answer = params["answer"]
+
+            quest = Question.where(id: 7).all.first
+
+            if answer == correctanswers[6]
+                return response_data({question: quest.content},"New Question created",200)
+            else
+                return response_data({results: [60,0,40,20]},"Result Done",200)
+            end
+        end
+
+        def get_answers_7
+            answer = params["answer"]
+
+            quest = Question.where(id: 8).all.first
+
+            if answer == correctanswers[7]
+                return response_data({question: quest.content},"New Question created",200)
+            else
+                return response_data({results: [70,100,50,20]},"Result Done",200)
+            end
+        end
+
+        def get_answers_8
+            answer = params["answer"]
+
+            # quest = Question.where(id: 7).all.first
+
+            if answer == correctanswers[8]
+                return response_data({},"Ideal Case _ Not Possible",200)
+            else
+                return response_data({results: [80,100,90,50]},"Result Done",200)
+            end
+        end
+
     end
   end
 end
